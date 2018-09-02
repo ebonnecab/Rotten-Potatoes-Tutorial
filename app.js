@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 
 app.get('/', (req, res) => {
-res.render('home', { msg: 'Hello World!' });
+  
+  res.render('home', { msg: 'Hello World!' });
 })
 
 app.listen(3000, () => {
