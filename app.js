@@ -18,8 +18,8 @@ app.set('view engine', 'handlebars');
 
 // OUR MOCK ARRAY OF PROJECTS
 let reviews = [
-  { title: "Great Review" },
-  { title: "Next Review" }
+  { title: "Old Yeller" },
+  { title: "Bad Review" }
 ]
 
 // INDEX
