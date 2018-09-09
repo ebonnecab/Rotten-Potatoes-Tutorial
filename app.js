@@ -1,5 +1,18 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/reviews', (req, res) => {
+    Review.create(req.body).then((review) => {
+      console.log(review);
+      res.redirect('/');
+    }).catch((err) => {
+      console.log(err.message);
+    })
+  })
+
 
 
 app.listen(3000, () => {
@@ -36,5 +49,12 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/rotten-potatoes', { useMongoClient: true });
 
 const Review = mongoose.model('Review', {
-  title: String
+  title: String,
+  description: String,
+  movieTitle: String
 });
+
+// NEW
+app.get('/reviews/new', (req, res) => {
+  res.render('reviews-new', {});
+})
