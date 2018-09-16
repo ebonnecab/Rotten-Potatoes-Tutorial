@@ -4,6 +4,8 @@ const app = express()
 const bodyParser = require('body-parser');
 const reviews = require('./controllers/reviews.js');
 const mongoose = require('mongoose');
+
+
 mongoose.connect('mongodb://localhost/rotten-potatoes', {
     userNewUrlParser: true
 });
@@ -26,3 +28,5 @@ app.use('/', reviews)
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
 })
+
+module.exports = app;
