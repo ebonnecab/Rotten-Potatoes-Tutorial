@@ -4,5 +4,5 @@ module.exports = mongoose.model('Review', {
     title: String,
     description: String,
     movieTitle: String,
-    movieRatings: String
+
 });
