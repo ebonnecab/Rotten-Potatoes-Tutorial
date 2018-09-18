@@ -1,3 +1,4 @@
+
 const express = require('express')
 const methodOverride = require('method-override')
 const app = express()
@@ -6,9 +7,8 @@ const reviews = require('./controllers/reviews.js');
 const mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/rotten-potatoes', {
-    userNewUrlParser: true
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes')
+
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 
