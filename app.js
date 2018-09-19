@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const app = express()
 const bodyParser = require('body-parser');
 const reviews = require('./controllers/reviews.js');
+const comment = require('./controllers/comments.js')
 const mongoose = require('mongoose');
 
 
@@ -24,6 +25,8 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.use('/', reviews)
+
+app.use ('/reviews/comments', comment)
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('App listening on port 3000!')

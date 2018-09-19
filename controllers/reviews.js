@@ -1,7 +1,7 @@
 const Review = require('../models/review')
 const express = require('express')
 router = express.Router()
-
+const Comment = require('../models/comment')
 
 router.get('/', (req, res) => {
     Review.find()
@@ -32,14 +32,19 @@ router.post('/reviews', (req, res) => {
 })
 // SHOW
 router.get('/reviews/:id', (req, res) => {
-    Review.findById(req.params.id).then((review) => {
-        res.render('reviews-show', {
-            review: review
-        })
-    }).catch((err) => {
-        console.log(err.message);
-    });
+  // find review
+  Review.findById(req.params.id).then(review => {
+    // fetch its comments
+    Comment.find({ reviewId: req.params.id }).then(comments => {
+      // respond with the template with both values
+      res.render('reviews-show', { review: review, comments: comments })
+    })
+  }).catch((err) => {
+    // catch errors
+    console.log(err.message)
+  });
 });
+
 
 // EDIT
 router.get('/reviews/:id/edit', function(req, res) {
