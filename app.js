@@ -28,8 +28,12 @@ app.use('/', reviews)
 
 app.use ('/reviews/comments', comment)
 
+//app.use ('reviews/comments/:id', delete)
+
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('App listening on port 3000!')
 })
+// DELETE
 
 module.exports = app;

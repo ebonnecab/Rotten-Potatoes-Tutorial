@@ -12,7 +12,13 @@ router = express.Router()
       console.log(err.message);
     });
   });
- // router.get('/:id', (req, res) => {
-    //res.send('reviews comment')
-  //})
+
+  router.delete('/:id', function (req, res) {
+    console.log("DELETE comment")
+    Comment.findByIdAndRemove(req.params.id).then((comment) => {
+      res.redirect(`/reviews/${comment.reviewId}`);
+    }).catch((err) => {
+      console.log(err.message);
+    })
+  })
 module.exports = router
