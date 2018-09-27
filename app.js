@@ -5,6 +5,7 @@ const app = express()
 const bodyParser = require('body-parser');
 const reviews = require('./controllers/reviews.js');
 const comment = require('./controllers/comments.js')
+const movie = require('./controllers/movies.js')
 const mongoose = require('mongoose');
 
 
@@ -24,7 +25,7 @@ app.engine('handlebars', exphbs({
 
 app.set('view engine', 'handlebars');
 
-app.use('/', reviews)
+app.use('/', movie)
 
 app.use ('/reviews/comments', comment)
 

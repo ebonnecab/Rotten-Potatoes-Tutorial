@@ -4,16 +4,20 @@ router = express.Router()
 const Comment = require('../models/comment')
 
 router.get('/', (req, res) => {
-    Review.find()
-        .then(reviews => {
-            res.render('reviews-index', {
-                reviews: reviews
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        });
-});
+  res.render('movies-index');
+})
+
+// router.get('/', (req, res) => {
+// Review.find()
+// .then(reviews => {
+// res.render('reviews-index', {
+//reviews: reviews
+// });
+// })
+    //.catch(err => {
+        //console.log(err);
+    //});
+
 // NEW
 router.get('/reviews/new', (req, res) => {
     console.log(req.params);
@@ -32,17 +36,22 @@ router.post('/reviews', (req, res) => {
 })
 // SHOW
 router.get('/reviews/:id', (req, res) => {
-  // find review
-  Review.findById(req.params.id).then(review => {
-    // fetch its comments
-    Comment.find({ reviewId: req.params.id }).then(comments => {
-      // respond with the template with both values
-      res.render('reviews-show', { review: review, comments: comments })
-    })
-  }).catch((err) => {
-    // catch errors
-    console.log(err.message)
-  });
+    // find review
+    Review.findById(req.params.id).then(review => {
+        // fetch its comments
+        Comment.find({
+            reviewId: req.params.id
+        }).then(comments => {
+            // respond with the template with both values
+            res.render('reviews-show', {
+                review: review,
+                comments: comments
+            })
+        })
+    }).catch((err) => {
+        // catch errors
+        console.log(err.message)
+    });
 });
 
 
