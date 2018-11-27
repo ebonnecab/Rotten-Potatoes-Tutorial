@@ -4,8 +4,8 @@ router = express.Router()
 const Comment = require('../models/comment')
 
 router.get('/', (req, res) => {
-  res.render('movies-index');
-})
+  res.render('movies-index')
+});
 
 // router.get('/', (req, res) => {
 // Review.find()
